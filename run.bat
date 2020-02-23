@@ -1,0 +1,1 @@
+g++ -std=c++0x main2.cpp -o a && a
