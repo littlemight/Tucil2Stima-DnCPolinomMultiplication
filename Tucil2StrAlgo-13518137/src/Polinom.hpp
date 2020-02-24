@@ -83,8 +83,6 @@ public:
     friend Polinom operator+(const Polinom& p1, const Polinom& p2);
     friend Polinom operator-(const Polinom& p1, const Polinom& p2);
     friend ostream& operator<<(ostream& os, Polinom other);
-    // friend Polinom mul_bf(Polinom& p1, Polinom& p2);
-    // friend Polinom mul_dnf(const Polinom& p1, const Polinom& p2);
 };
 
 
@@ -156,58 +154,4 @@ ostream& operator<<(ostream& os, Polinom other) {
     }
     return os;
 }
-
-// Polinom mul_bf(Polinom& p1, Polinom& p2) {
-//     Polinom ret(p1.n + p2.n, 0);
-//     for (int i = 0; i <= p1.n; i++) {
-//         for (int j = 0; j <= p2.n; j++) {
-//             ret[i + j] += p1[i] * p2[j];
-//             pluscnt++;
-//             mulcnt++;
-//         }
-//     }
-//     return ret;
-// }
-
-// Polinom mul_dnc(const Polinom& p1, const Polinom& p2) {
-//     if (p1.n <= 1) {
-//         Polinom ret(p1.n + p2.n, 0);
-//         for (int i = 0; i <= p1.n; i++) {
-//             for (int j = 0; j <= p2.n; j++) {
-//                 ret[i + j] += p1[i] * p2[j];
-//                 pluscnt++;
-//                 mulcnt++;
-//             }
-//         }
-//         return ret;
-//     }
-
-//     int hn = p1.n / 2;
-//     Polinom a0(hn - 1, 0), a1(p1.n - hn, 0);
-//     Polinom b0(hn - 1, 0), b1(p1.n - hn, 0);
-//     for (int i = 0; i <= hn - 1; i++) {
-//         a0[i] = p1[i];
-//         b0[i] = p2[i];
-//     }
-//     for (int i = hn; i <= p1.n; i++) {
-//         a1[i - hn] = p1[i];
-//         b1[i - hn] = p2[i];
-//     }
-
-//     Polinom u(mul_dnc(a0, b0));
-//     Polinom z(mul_dnc(a1, b1));
-//     Polinom y(mul_dnc(a0 + a1, b0 + b1));
-//     Polinom ret(y.n + 2 * hn, 0);
-//     for (int i = 0; i <= y.n; i++) {
-//         if (i <= u.n) {
-//             ret[i] += u[i];
-//             ret[i + hn] -= u[i];
-//             pluscnt += 2;
-//         }
-//         ret[i + hn] += y[i] - z[i];
-//         ret[i + (2 * hn)] += z[i];
-//         pluscnt += 3;
-//     }
-//     return ret;
-// }
 #endif

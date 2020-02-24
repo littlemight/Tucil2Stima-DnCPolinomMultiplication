@@ -10,6 +10,7 @@ void reset() {
 }
 
 int main() {
+    cout << fixed << setprecision(10);
     int n;
     cout << "Masukkan N: ";
     cin >> n;
@@ -18,9 +19,9 @@ int main() {
     clock_t start1 = clock();
     PolinomBF ab(a * b);
     clock_t stop1 = clock();
-    double delta1 = (stop1 - start1) * 1./CLOCKS_PER_SEC;
-    delta1 *= 1000;
-    cout << "RUNTIME (BF): " << delta1 << " ms\n";
+    long double delta1 = (stop1 - start1) * 1./CLOCKS_PER_SEC;
+    delta1 *= 1000000;
+    cout << "RUNTIME (BF): " << delta1 << " microseconds\n";
     cout << "PLUS COUNT: " << pluscnt << '\n';
     cout << "MUL COUNT: " << mulcnt << '\n';
 
@@ -30,12 +31,12 @@ int main() {
     clock_t start2 = clock();
     PolinomDnC cd(c * d);
     clock_t stop2 = clock();
-    double delta2 = (stop2 - start2) * 1./CLOCKS_PER_SEC;
-    delta2 *= 1000;
+    long double delta2 = (stop2 - start2) * 1./CLOCKS_PER_SEC;
+    delta2 *= 1000000;
 
     cout << '\n';
 
-    cout << "RUNTIME (DnC): " << delta2 << " ms\n";
+    cout << "RUNTIME (DnC): " << delta2 << " microseconds\n";
     cout << "PLUS COUNT: " << pluscnt << '\n';
     cout << "MUL COUNT: " << mulcnt << '\n';
 
@@ -43,6 +44,14 @@ int main() {
     cout << '\n';
     cout << "RATIO TIMEBF/TIMEDNC: " << ratio << '\n';
 
-    cout << ab << '\n' << cd << '\n';
+    cout << "Tampilkan hasil perkalian? (Y/N)" << '\n';
+    char val;
+    cin >> val;
+    if (val == 'Y') {
+        cout << "A: " << a << '\n';
+        cout << "B: " << b << '\n';
+        cout << "BF: " << ab << '\n';
+        cout << "DnC: " << cd << '\n';
+    }
     return 0;    
 }
